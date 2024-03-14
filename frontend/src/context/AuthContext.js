@@ -1,5 +1,5 @@
 // client/src/context/AuthContext.js
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { mockLogin } from '../services/authService';
 
 export const AuthContext = createContext();

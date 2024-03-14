@@ -4,14 +4,19 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import { fetchData } from '../services/apiService';
 import './HomePage.css';
-import ServerControls from '../components/ServerControls'; // Ensure the path is correct
+import ServerControls from '../components/ServerControls';
+import ServerSetupForm from '../components/ServerSetupForm'; // Import the setup form
+import Modal from '../components/Modal'; // Import the Modal component
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
-  const [serverStatus, setServerStatus] = useState('Offline');
+  const [serverStatus, setServerStatus] = useState('Checking...');
   const [serverOutput, setServerOutput] = useState([]);
+  const [isSetupFormOpen, setIsSetupFormOpen] = useState(false); // State to control modal visibility
 
+  // Consolidate useEffect hooks for initial data fetching and server status checking if possible
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -24,22 +29,22 @@ const HomePage = () => {
     };
 
     loadData();
+
+    // Removed the duplicate server status polling for demonstration
   }, []);
 
+  const handleServerAction = async (action) => {
+    // Consolidating server action handlers into a single function
+    console.log(`${action} server...`);
+    // This is where you'd ideally call an API to actually start/stop/restart the server
+    // For now, simulate the action with setTimeout
+    setTimeout(() => {
+      const newStatus = action === 'stop' ? 'Offline' : 'Online';
+      const actionResult = `Server ${action} successfully`;
 
-  const handleStartServer = async () => {
-    console.log('Starting server...');
-    setTimeout(() => setServerStatus('Online'), 1000); // Simulated async action
-  };
-
-  const handleStopServer = async () => {
-    console.log('Stopping server...');
-    setTimeout(() => setServerStatus('Offline'), 1000); // Simulated async action
-  };
-
-  const handleServerCommand = (command) => {
-    console.log(`Executing command: ${command}`);
-    setServerOutput([...serverOutput, `Command executed: ${command}`]);
+      setServerStatus(newStatus);
+      setServerOutput((prevOutput) => [...prevOutput, actionResult]);
+    }, 1000);
   };
 
   return (
@@ -48,20 +53,23 @@ const HomePage = () => {
       <main className="main-content">
         <ServerControls
           status={serverStatus}
-          onStart={handleStartServer}
-          onStop={handleStopServer}
-          onCommand={handleServerCommand}
+          onStart={() => handleServerAction('start')}
+          onStop={() => handleServerAction('stop')}
+          onCommand={handleServerAction} // Assuming onCommand can accept 'start'/'stop' commands
           output={serverOutput}
         />
         <div className="app-content">
           <h2>Welcome to My Application</h2>
+          <Button text="Setup New Server" onClick={() => setIsSetupFormOpen(true)} />
+          <Modal isOpen={isSetupFormOpen} onClose={() => setIsSetupFormOpen(false)}>
+            <ServerSetupForm />
+            </Modal>
+          {/* Existing content rendering */}
           <Button text="Click Me" onClick={() => alert('Button clicked!')} />
-          {data ? (
-            <p className="data-loaded">Data loaded: {JSON.stringify(data)}</p>
-          ) : error ? (
+          {error ? (
             <p className="error-message">{error}</p>
           ) : (
-            <p>Loading data...</p>
+            <p className="data-loaded">Data loaded: {JSON.stringify(data, null, 2)}</p>
           )}
         </div>
       </main>
