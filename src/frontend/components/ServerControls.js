@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { ServerStatusContext } from './context/ServerStatusContext';
 import Button from './Button';
 import './ServerControls.css';
