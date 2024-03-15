@@ -1,0 +1,103 @@
+:root {
+    --background-color: #34568B; /* Updated for better contrast */
+    --text-color: #F7F7FF; /* Lighter for readability */
+    --hover-text-color: #DAA520; /* Gold for emphasis */
+    --logout-btn-color: #D64541; /* Softened red */
+    --logout-btn-hover-color: #B2332F; /* Darker shade for hover */
+    --hamburger-background-color: #F7F7FF; /* Matches text color */
+    --font-family: 'Nunito', sans-serif;
+    --overlay-color: rgba(0, 0, 0, 0.5); /* For overlay */
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: #F8F9FA;
+    color: #333;
+  }
+
+  .header {
+    background-color: var(--background-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header h1 {
+    color: var(--text-color);
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .nav, .nav-expanded {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-expanded {
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--background-color);
+    padding-top: 5rem;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+    z-index: 1002;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav { display: none; }
+    .nav-toggle { display: block; }
+    .nav-expanded { display: flex; }
+  }
+        
+
+  
+  .hamburger, .hamburger::before, .hamburger::after {
+    background: var(--hamburger-background-color);
+    width: 25px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger::before { top: -8px; }
+  .hamburger::after { top: 8px; }
+  
+  .logout-btn {
+    padding: 8px 16px;
+    background-color: var(--logout-btn-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover, .header nav a:hover {
+    background-color: var(--logout-btn-hover-color);
+    color: var(--hover-text-color);
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--overlay-color);
+    z-index: 1001; /* Below nav-expanded but above everything else */
+  }
