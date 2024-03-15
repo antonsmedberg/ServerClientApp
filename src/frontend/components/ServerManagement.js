@@ -50,8 +50,9 @@ const ServerManagement = () => {
       <h2>Server Management</h2>
       {error && <div className="error">{error}</div>}
       <p>{serverStatus}</p>
-      <button onClick={() => handleAction('start')}>Start Server</button>
-      <button onClick={() => handleAction('stop')}>Stop Server</button>
+      <button onClick={() => handleAction('start')} disabled={actionInProgress}>Start Server</button>
+      <button onClick={() => handleAction('stop')} disabled={actionInProgress}>Stop Server</button>
+
     </div>
   );
 };

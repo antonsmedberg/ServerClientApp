@@ -1,13 +1,29 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 import { AuthProvider } from './frontend/context/AuthContext';
 import ProtectedRoute from './frontend/components/ProtectedRoute';
 import Layout from './frontend/components/Layout';
 import SuspenseFallback from './frontend/components/SuspenseFallback';
 import ErrorBoundary from './frontend/components/ErrorBoundary';
+import { ThemeProvider } from 'styled-components';
 import { theme } from './frontend/theme'; // Ensure dynamic theme switching if needed
-// Consider importing a NotFoundPage for unmatched routes
+import styled from 'styled-components';
+
+
+
+const ResponsiveDiv = styled.div`
+  padding: ${({ theme }) => theme.spacing.medium};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.spacing.large};
+  }
+`;
+
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text.light};
+  // Add more styles
+`;
 
 // Define routes using lazy loading for optimal performance
 const HomePage = lazy(() => import('./frontend/pages/HomePage'));

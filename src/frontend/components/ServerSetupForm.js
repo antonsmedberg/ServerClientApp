@@ -38,7 +38,7 @@ const ServerSetupForm = () => {
                 />
             </div>
             <button type="submit" className="btn" disabled={!port}>Setup Server</button>
-            {error && <p className="error">{error}</p>}
+            {error && <span className="error-message">{error}</span>}
         </form>
     );
 };
