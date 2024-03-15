@@ -2,11 +2,13 @@ import React from 'react';
 
 const SuspenseFallback = () => {
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h2>Loading, please wait...</h2>
-      {/* You can add a spinner or animation here */}
+    <div className="loader-container">
+       <div style={{ textAlign: 'center', marginTop: '50px' }}></div>
+      <h2>Loading, please wait...</h2> 
+      <div className="loader"></div>
     </div>
   );
 };
 
 export default SuspenseFallback;
+

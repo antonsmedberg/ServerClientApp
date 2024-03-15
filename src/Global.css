@@ -1,55 +1,37 @@
+/* Importing Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
+/* Root Variables */
 :root {
-    --primary-bg-color: #f8f9fa;
-    --secondary-bg-color: #4CAF50;
-    --error-bg-color: #F44336;
-    --text-color: #333;
-    --error-text-color: #fff;
-    --link-color: #3498db;
-    --link-hover-color: #2980b9;
-    --button-bg-color: var(--link-color);
-    --button-hover-bg-color: var(--link-hover-color);
-    --border-radius: 5px;
-    --transition-speed: 0.3s;
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --primary-bg-color: #f8f9fa; /* Light background */
+    --secondary-bg-color: #4CAF50; /* Secondary color for highlighting */
+    --error-bg-color: #F44336; /* Error background */
+    --text-color: #333; /* Text color */
+    --error-text-color: #fff; /* Error text color */
+    --link-color: #3498db; /* Link color */
+    --link-hover-color: #2980b9; /* Link hover color */
+    --button-bg-color: var(--link-color); /* Button background color */
+    --button-hover-bg-color: var(--link-hover-color); /* Button hover background color */
+    --border-radius: 5px; /* Border radius for elements */
+    --transition-speed: 0.3s; /* Transition speed */
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for elements */
+
+    /* Typography */
+    --font-family: 'Nunito', sans-serif; /* Base font family */
+    --font-size-base: 16px; /* Base font size */
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6, p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--text-color);
+html {
+    font-size: var(--font-size-base); /* Set base font size */
 }
 
-/* Accessibility Improvements */
-a:focus, button:focus {
-    outline: 3px solid var(--link-hover-color);
-    outline-offset: 2px;
-}
-
-/* Utility Classes */
-.mt-1 { margin-top: 1rem; }
-.mb-1 { margin-bottom: 1rem; }
-.flex { display: flex; }
-.align-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-
-/* Base Styles */
 body {
-    font-size: 16px;
     margin: 0;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--primary-bg-color);
     color: var(--text-color);
-    line-height: 1.6; /* Improved line height for readability */
-}
-
-/* Responsive Typography */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Smaller font size on smaller devices */
-    }
+    line-height: 1.6;
 }
 
 /* Box Sizing */
@@ -86,7 +68,7 @@ button:hover {
 }
 
 button:active {
-    transform: translateY(2px); /* Button press effect */
+    transform: translateY(2px);
 }
 
 /* Additional Styles for Forms */
@@ -111,5 +93,8 @@ input:focus, select:focus, textarea:focus {
     border-radius: var(--border-radius);
     margin-top: 1rem;
 }
+
+
+
 
   

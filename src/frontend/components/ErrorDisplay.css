@@ -1,0 +1,8 @@
+.error-display {
+    background-color: #d32f2f; /* Darker, bolder red */
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px; 
+  }
+  

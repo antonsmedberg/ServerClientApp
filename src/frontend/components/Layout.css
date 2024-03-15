@@ -1,10 +1,11 @@
-/* Layout.css */
 :root {
   --primary-bg-color: #f4f7f6;
   --content-bg-color: #ffffff;
   --focus-outline-color: #3498db;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
+  --skip-link-bg-color: #3498db;
+  --skip-link-text-color: #fff;
 }
 
 .layout {
@@ -12,6 +13,17 @@
   flex-direction: column;
   min-height: 100vh;
   background: var(--primary-bg-color);
+}
+
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: transparent;
+  border: none;
+  color: var(--focus-outline-color);
+  cursor: pointer;
 }
 
 .main-content {
@@ -43,8 +55,8 @@ a:focus, button:focus {
   position: absolute;
   top: -40px;
   left: 0;
-  background: var(--focus-outline-color);
-  color: white;
+  background: var(--skip-link-bg-color);
+  color: var(--skip-link-text-color);
   padding: 8px;
   z-index: 100;
   transition: top 0.3s ease;
@@ -70,6 +82,15 @@ html {
     font-size: 14px;
   }
 }
+
+.dark-mode {
+  --primary-bg-color: #222;
+  --content-bg-color: #333;
+  --focus-outline-color: #4CAF50;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+
 
 
   

@@ -6,52 +6,58 @@ import Layout from './frontend/components/Layout';
 import SuspenseFallback from './frontend/components/SuspenseFallback';
 import ErrorBoundary from './frontend/components/ErrorBoundary';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './frontend/theme'; // Ensure dynamic theme switching if needed
+import { theme } from './frontend/theme';
 import styled from 'styled-components';
 
-
-
-const ResponsiveDiv = styled.div`
-  padding: ${({ theme }) => theme.spacing.medium};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: ${({ theme }) => theme.spacing.large};
-  }
-`;
-
+// Styled Components
 const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.text.light};
-  // Add more styles
+  // Add more styles as needed
 `;
 
-// Define routes using lazy loading for optimal performance
+// Lazy Loaded Pages
 const HomePage = lazy(() => import('./frontend/pages/HomePage'));
 const LoginPage = lazy(() => import('./frontend/pages/LoginPage'));
 const AboutPage = lazy(() => import('./frontend/pages/AboutPage'));
-// Add more routes as your application grows
+const NotFoundPage = lazy(() => import('./frontend/pages/NotFoundPage'));
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <AuthProvider>
       <Router>
-        <Suspense fallback={<SuspenseFallback />}>
-          <Layout>
-            <ErrorBoundary>
+        <Layout>
+          <ErrorBoundary>
+            <Suspense fallback={<SuspenseFallback />}>
               <Routes>
+                {/* Public Routes */}
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-                <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
-                {/* Consider adding a route for a NotFoundPage */}
+                <Route path="/about" element={<AboutPage />} />
+                {/* Protected Routes */}
+                <Route path="/" element={<ProtectedRoute />}>
+                  <Route index element={<HomePage />} />
+                  {/* Add more protected routes if needed */}
+                </Route>
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
-            </ErrorBoundary>
-          </Layout>
-        </Suspense>
+            </Suspense>
+          </ErrorBoundary>
+        </Layout>
       </Router>
     </AuthProvider>
   </ThemeProvider>
 );
 
 export default App;
+
+
+
+
+
+
+
+
+
+
 
 

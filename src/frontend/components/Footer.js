@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'; // Link to the CSS file for styling
+import './Footer.css';
 
 const Footer = () => (
   <footer className="footer">
@@ -8,3 +8,4 @@ const Footer = () => (
 );
 
 export default Footer;
+

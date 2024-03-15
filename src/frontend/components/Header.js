@@ -1,14 +1,12 @@
-// client/src/components/Header.js
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import './Header.css'; // Updated styles
+import AuthContext from '../context/AuthContext';
+import './Header.css';
 
 const Header = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
-  // Close nav on escape key press
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape' && isNavExpanded) {
@@ -37,5 +35,6 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
