@@ -20,3 +20,5 @@ export const ServerStatusProvider = ({ children }) => {
         </ServerStatusContext.Provider>
     );
 };
+
+export default ServerStatusContext;
